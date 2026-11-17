@@ -1,0 +1,150 @@
+/* Colours, fonts and the spacing scale. Change the whole look from here. */
+:root {
+  --bg: #0B2B33;
+  --text: #E3EDF0;
+  --muted: #A8BEC4;
+  --line: #2F5059;
+  --accent: #BFD8DE;
+  --sheet: #FFFFFF;
+  --ink: #1A1A1A;
+  --space-s: 8px;
+  --gutter: 16px;
+  --space-m: 24px;
+  --space-l: 40px;
+  --serif: "Playfair Display", Georgia, serif;
+  --sans: "Source Sans 3", Arial, sans-serif;
+}
+
+/* Page base: background, body text and the default look of headings, text and links */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.25; }
+h1 { font-size: clamp(2.25rem, 7vw, 3.25rem); margin: 0 0 var(--space-s); }
+h2 { font-size: 1.75rem; margin: 0 0 var(--space-m); }
+h3 { font-size: 1.15rem; margin: 0; }
+p { margin: 0 0 var(--space-s); max-width: 68ch; }
+a { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* Skip link: hidden until a keyboard user tabs to it */
+.skip-link { position: absolute; left: -9999px; }
+.skip-link:focus {
+  left: var(--space-m);
+  top: var(--space-s);
+  z-index: 10;
+  padding: var(--space-s) var(--space-m);
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* Navigation bar: sticky, flexbox row with the name on the left and links on the right */
+header { position: sticky; top: 0; z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: min(760px, 100% - 32px);
+  margin: 0 auto;
+}
+.nav-brand, .nav-link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--text);
+  text-decoration: none;
+}
+.nav-brand { font-family: var(--serif); font-size: 1.15rem; }
+.nav-links { display: flex; gap: var(--space-m); margin: 0; padding: 0; list-style: none; }
+.nav-brand:hover, .nav-link:hover { color: var(--accent); }
+
+/* Sections: shared width, 40px of space above and below, offset so the sticky bar never covers a heading */
+main > section, footer { width: min(760px, 100% - 32px); margin: 0 auto; }
+section { padding: var(--space-l) 0; scroll-margin-top: 56px; }
+
+/* Hero (#hero): name, belief line, intro, status line and buttons */
+#hero { padding-top: 64px; }
+.belief { font-family: var(--serif); font-style: italic; font-size: 1.35rem; line-height: 1.4; margin-bottom: var(--space-m); }
+.status { margin: var(--space-m) 0; }
+.actions { display: flex; flex-wrap: wrap; gap: var(--gutter); }
+
+/* Buttons (.button, .button-outline): filled and outlined versions, colour change on hover only */
+.button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--space-m);
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 600;
+  text-decoration: none;
+}
+.button:hover { background: transparent; color: var(--accent); }
+.button-outline { background: transparent; color: var(--accent); }
+.button-outline:hover { background: var(--accent); color: var(--bg); }
+
+/* Cards (.card): flat boxes with a thin outline, stacked in a one-column grid */
+.card-list { display: grid; grid-template-columns: 1fr; gap: var(--space-m); }
+.card { border: 1px solid var(--line); padding: var(--space-m); }
+.card-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0 var(--space-m);
+  margin-bottom: var(--space-s);
+}
+.card-head p { margin: 0; }
+.meta { color: var(--muted); font-size: 0.95rem; }
+.card ul { margin: 0; padding-left: 1.25rem; }
+.card li { margin-bottom: var(--space-s); max-width: 68ch; }
+.card li:last-child, .card p:last-child { margin-bottom: 0; }
+
+/* Resume area (#resume-section): heading and download link above the white sheet */
+.resume-intro { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--gutter); margin-bottom: var(--space-m); }
+.resume-intro h2 { margin: 0; }
+
+/* Paper resume (#resume): a white sheet with dark text, laid out like a one-page document */
+#resume { background: var(--sheet); color: var(--ink); padding: var(--space-l); font-size: 0.95rem; line-height: 1.5; }
+#resume p, #resume li { max-width: none; }
+#resume a { color: var(--ink); }
+.resume-name { font-family: var(--serif); font-size: 1.8rem; font-weight: 600; margin: 0; }
+.resume-contact { margin-bottom: var(--space-m); }
+#resume h3 { margin: var(--space-m) 0 var(--space-s); padding-bottom: 4px; border-bottom: 1px solid #CFCFCF; font-size: 1.05rem; }
+.resume-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 var(--space-m); margin: 0; }
+.resume-detail { margin-bottom: var(--space-s); }
+.resume-entry { margin-bottom: var(--space-s); }
+#resume ul { margin: 2px 0 var(--space-s); padding-left: 1.1rem; }
+
+/* Contact (#contact) and footer */
+#contact p { margin-bottom: var(--space-m); }
+footer { padding: var(--space-m) 0 var(--space-l); border-top: 1px solid var(--line); color: var(--muted); font-size: 0.95rem; }
+footer p { margin: 0; }
+
+/* Narrow screens (under 700px): tighter nav and padding, full-width buttons */
+@media (max-width: 699px) {
+  .nav-links { gap: var(--gutter); }
+  #hero { padding-top: var(--space-l); }
+  .card { padding: var(--gutter); }
+  #resume { padding: var(--space-m); }
+  .button { width: 100%; justify-content: center; }
+}
+
+/* Print: show only the resume, black on white, fitted to one A4 page */
+@media print {
+  @page { size: A4; margin: 12mm; }
+  header, footer, main > section:not(#resume-section), .resume-intro { display: none; }
+  body { background: #FFFFFF; color: #000000; }
+  #resume-section { width: auto; margin: 0; padding: 0; }
+  #resume { padding: 0; color: #000000; font-size: 9.5pt; line-height: 1.35; }
+  #resume a { color: #000000; text-decoration: none; }
+  #resume h3 { margin-top: 10pt; border-bottom-color: #000000; }
+}
